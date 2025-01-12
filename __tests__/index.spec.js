@@ -63,4 +63,10 @@ describe("string calculator", () => {
       expect(add("//[***]\n1***2***3")).toEqual(6);
     });
   });
+
+  describe("multiple delimiters", () => {
+    test("should work with multiple delimiters", () => {
+      expect(add("//[*][%]\n1*2%3")).toEqual(6);
+    });
+  });
 });

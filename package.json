@@ -1,0 +1,25 @@
+{
+  "name": "tdd-string-calculator",
+  "version": "1.0.0",
+  "description": "TDD approach of solving string calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swastikyadav/TDD-String-Calculator.git"
+  },
+  "keywords": [
+    "TDD"
+  ],
+  "author": "Swastikyadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Swastikyadav/TDD-String-Calculator/issues"
+  },
+  "homepage": "https://github.com/Swastikyadav/TDD-String-Calculator#readme",
+  "devDependencies": {
+    "jest": "29.7.0"
+  }
+}

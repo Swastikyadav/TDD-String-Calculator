@@ -4,8 +4,8 @@ function buildNumbersArray(str, baseDelimiter, delimiter) {
   const baseRight = baseSplit[1] || "";
 
   const numbersArray = [
-    ...baseLeft.split(delimiter),
-    ...baseRight.split(delimiter),
+    ...(baseLeft ? baseLeft.split(delimiter) : []),
+    ...(baseRight ? baseRight.split(delimiter) : []),
   ];
 
   return numbersArray.map((num) => Number(num));

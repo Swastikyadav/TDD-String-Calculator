@@ -1,4 +1,5 @@
-const { add, buildNumbersArray } = require("../index");
+const calculator = require("../index");
+const { add, buildNumbersArray } = calculator;
 
 describe("string calculator", () => {
   describe("two numbers separated by commas", () => {
@@ -23,7 +24,10 @@ describe("string calculator", () => {
 
   describe("handle new line", () => {
     test("new line should act as a delimiter", () => {
+      const buildNumbersArraySpy = jest.spyOn(calculator, "buildNumbersArray");
+
       expect(add("1\n2,3")).toEqual(6);
+      expect(buildNumbersArraySpy).toHaveBeenCalled();
     });
   });
 

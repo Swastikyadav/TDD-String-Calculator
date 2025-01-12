@@ -37,4 +37,10 @@ describe("string calculator", () => {
       expect(buildNumbersArray("1,2,3", "\n", ",")).toEqual([1, 2, 3]);
     });
   });
+
+  describe("delimiter change", () => {
+    test("should change delimiter from comma to char followed after //", () => {
+      expect(add("//;\n1;2")).toEqual(3);
+    });
+  });
 });

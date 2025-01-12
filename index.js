@@ -36,7 +36,7 @@ function add(str) {
     );
   }
 
-  return numbersArray.reduce((acc, cv) => acc + cv, 0);
+  return numbersArray.reduce((acc, cv) => (cv > 1000 ? acc : acc + cv), 0);
 }
 
 const calculator = {

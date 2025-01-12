@@ -20,4 +20,10 @@ describe("string calculator", () => {
       expect(add("1, 2, 3, 4")).toEqual(10);
     });
   });
+
+  describe("handle new line", () => {
+    test("new line should act as a delimiter", () => {
+      expect(add("1\n2,3")).toEqual(6);
+    });
+  });
 });

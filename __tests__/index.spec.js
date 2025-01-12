@@ -43,4 +43,12 @@ describe("string calculator", () => {
       expect(add("//;\n1;2")).toEqual(3);
     });
   });
+
+  describe("throw exception", () => {
+    test("should throw exception for negative numbers", () => {
+      expect(() => add("//;\n-1;2;-3")).toThrow(
+        Error("negative numbers not allowed -1,-3")
+      );
+    });
+  });
 });

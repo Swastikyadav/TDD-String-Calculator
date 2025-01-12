@@ -17,7 +17,7 @@ function add(str) {
   const baseDelimiter = "\n";
   let delimiter = ",";
 
-  if (str[0] === "/" && str[1] === "/") {
+  if (str.startsWith("//")) {
     delimiter = str[2];
     str = str.split(baseDelimiter)[1];
   }

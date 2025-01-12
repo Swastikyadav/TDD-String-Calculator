@@ -18,7 +18,10 @@ function add(str) {
   let delimiter = ",";
 
   if (str.startsWith("//")) {
-    delimiter = str[2];
+    delimiter = str.split("\n")[0].slice(2).replace("][", ",");
+    if (delimiter.startsWith("[") && delimiter.endsWith("]")) {
+      delimiter = delimiter.slice(1, -1);
+    }
     str = str.split(baseDelimiter)[1];
   }
 

@@ -14,4 +14,10 @@ describe("string calculator", () => {
       expect(add("1, 2")).toEqual(3);
     });
   });
+
+  describe("allow unknown amount of numbers", () => {
+    test("any amount of numbers should return their sum", () => {
+      expect(add("1, 2, 3, 4")).toEqual(10);
+    });
+  });
 });

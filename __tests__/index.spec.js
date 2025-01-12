@@ -51,4 +51,10 @@ describe("string calculator", () => {
       );
     });
   });
+
+  describe("> 1000", () => {
+    test("ignore numbers bigger than 1000", () => {
+      expect(add("//;\n1;2;1002;3")).toEqual(6);
+    });
+  });
 });

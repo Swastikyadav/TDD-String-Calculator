@@ -57,4 +57,10 @@ describe("string calculator", () => {
       expect(add("//;\n1;2;1002;3")).toEqual(6);
     });
   });
+
+  describe("lengthy delimiter", () => {
+    test("delimiter of any length should work", () => {
+      expect(add("//[***]\n1***2***3")).toEqual(6);
+    });
+  });
 });

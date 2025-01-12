@@ -1,9 +1,17 @@
 const { add } = require("../index");
 
 describe("string calculator", () => {
-  describe("add two numbers separated by commas and return their sum", () => {
+  describe("two numbers separated by commas", () => {
     test("empty string should return 0", () => {
       expect(add("")).toEqual(0);
+    });
+
+    test("single number should return the number itself", () => {
+      expect(add("1")).toEqual(1);
+    });
+
+    test("2 comma separated numbers should return their sum", () => {
+      expect(add("1, 2")).toEqual(3);
     });
   });
 });

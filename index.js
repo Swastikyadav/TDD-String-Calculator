@@ -21,7 +21,23 @@ function buildNumbersArray(str, baseDelimiter, delimiter) {
   return numbersArray.map((num) => Number(num));
 }
 
-function parseDelimiter(str, baseDelimiter, defaultDelimiter) {}
+function parseDelimiter(str, baseDelimiter, defaultDelimiter) {
+  if (str.startsWith("//")) {
+    const delimiter = str.split("\n")[0].slice(2).replace("][", ",");
+    const evaluateStr = str.split(baseDelimiter)[1];
+
+    if (delimiter.startsWith("[") && delimiter.endsWith("]")) {
+      return {
+        delimiter: delimiter.slice(1, -1),
+        evaluateStr,
+      };
+    }
+
+    return { delimiter, evaluateStr };
+  }
+
+  return { delimiter: defaultDelimiter, evaluateStr: str };
+}
 
 function add(str) {
   if (!str) return 0;

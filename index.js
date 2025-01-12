@@ -1,24 +1,15 @@
 function buildNumbersArray(str, baseDelimiter, delimiter) {
-  const baseSplit = str.split(baseDelimiter);
-  const baseLeft = baseSplit[0] || "";
-  const baseRight = baseSplit[1] || "";
+  const [baseLeft, baseRight = ""] = str.split(baseDelimiter);
 
-  let stringToEvaluate = baseLeft + (baseRight ? "," : "") + baseRight;
-  let delimiterArray = [];
-
-  if (delimiter.length === 1) {
-    delimiterArray = [delimiter];
-  } else if (delimiter.length > 1) {
-    delimiterArray = delimiter.split(",");
-  }
+  let stringToEvaluate = `${baseLeft}${baseRight ? "," + baseRight : ""}`;
+  let delimiterArray =
+    delimiter.length > 1 ? delimiter.split(",") : [delimiter];
 
   delimiterArray.forEach((delim) => {
     stringToEvaluate = stringToEvaluate.replaceAll(delim, ",");
   });
 
-  const numbersArray = [...stringToEvaluate.split(",")];
-
-  return numbersArray.map((num) => Number(num));
+  return stringToEvaluate.split(",").map((num) => Number(num));
 }
 
 function parseDelimiter(str, baseDelimiter, defaultDelimiter) {

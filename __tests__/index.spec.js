@@ -1,4 +1,4 @@
-const { add } = require("../index");
+const { add, buildNumbersArray } = require("../index");
 
 describe("string calculator", () => {
   describe("two numbers separated by commas", () => {
@@ -24,6 +24,12 @@ describe("string calculator", () => {
   describe("handle new line", () => {
     test("new line should act as a delimiter", () => {
       expect(add("1\n2,3")).toEqual(6);
+    });
+  });
+
+  describe("buildNumbersArray", () => {
+    test("should return an array of numbers from string separated by baseDelimiter and delimiter", () => {
+      expect(buildNumbersArray("1\n2,3", "\n", ",")).toEqual([1, 2, 3]);
     });
   });
 });

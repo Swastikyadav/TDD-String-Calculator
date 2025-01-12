@@ -1,7 +1,22 @@
 const calculator = require("../index");
-const { add, buildNumbersArray } = calculator;
+const { add, buildNumbersArray, parseDelimiter } = calculator;
+
+const buildNumbersArraySpy = jest.spyOn(calculator, "buildNumbersArray");
+const parseDelimiterSpy = jest.spyOn(calculator, "parseDelimiter");
 
 describe("string calculator", () => {
+  afterEach(() => {
+    if (
+      expect.getState().currentTestName ===
+      "string calculator two numbers separated by commas empty string should return 0"
+    ) {
+      return;
+    }
+
+    expect(buildNumbersArraySpy).toHaveBeenCalled();
+    expect(parseDelimiterSpy).toHaveBeenCalled();
+  });
+
   describe("two numbers separated by commas", () => {
     test("empty string should return 0", () => {
       expect(add("")).toEqual(0);
@@ -24,10 +39,7 @@ describe("string calculator", () => {
 
   describe("handle new line", () => {
     test("new line should act as a delimiter", () => {
-      const buildNumbersArraySpy = jest.spyOn(calculator, "buildNumbersArray");
-
       expect(add("1\n2,3")).toEqual(6);
-      expect(buildNumbersArraySpy).toHaveBeenCalled();
     });
   });
 
@@ -73,6 +85,19 @@ describe("string calculator", () => {
   describe("lengthy multiple delimiters", () => {
     test("should handle multiple delimiters with length > 1", () => {
       expect(add("//[***][%%]\n1***2%%3")).toEqual(6);
+    });
+  });
+
+  describe("parseDelimiter", () => {
+    test("should return parsed delimiter and string to evaluate", () => {
+      expect(parseDelimiter("1,2,3", "\n", ",")).toEqual({
+        delimiter: ",",
+        evaluateStr: "1,2,3",
+      });
+      expect(parseDelimiter("//[***][%%]\n1***2%%3", "\n", ",")).toEqual({
+        delimiter: "***,%%",
+        evaluateStr: "1***2%%3",
+      });
     });
   });
 });

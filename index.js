@@ -5,6 +5,7 @@ function buildNumbersArray(str, baseDelimiter, delimiter) {
 
   let stringToEvaluate = baseLeft + (baseRight ? "," : "") + baseRight;
   let delimiterArray = [];
+
   if (delimiter.length === 1) {
     delimiterArray = [delimiter];
   } else if (delimiter.length > 1) {
@@ -20,19 +21,18 @@ function buildNumbersArray(str, baseDelimiter, delimiter) {
   return numbersArray.map((num) => Number(num));
 }
 
+function parseDelimiter(str, baseDelimiter, defaultDelimiter) {}
+
 function add(str) {
   if (!str) return 0;
 
   const baseDelimiter = "\n";
-  let delimiter = ",";
-
-  if (str.startsWith("//")) {
-    delimiter = str.split("\n")[0].slice(2).replace("][", ",");
-    if (delimiter.startsWith("[") && delimiter.endsWith("]")) {
-      delimiter = delimiter.slice(1, -1);
-    }
-    str = str.split(baseDelimiter)[1];
-  }
+  let { delimiter, evaluateStr } = calculator.parseDelimiter(
+    str,
+    baseDelimiter,
+    ","
+  );
+  str = evaluateStr;
 
   const numbersArray = calculator.buildNumbersArray(
     str,
@@ -54,6 +54,7 @@ function add(str) {
 const calculator = {
   add,
   buildNumbersArray,
+  parseDelimiter,
 };
 
 module.exports = calculator;

@@ -3,10 +3,19 @@ function buildNumbersArray(str, baseDelimiter, delimiter) {
   const baseLeft = baseSplit[0] || "";
   const baseRight = baseSplit[1] || "";
 
-  const numbersArray = [
-    ...(baseLeft ? baseLeft.split(delimiter) : []),
-    ...(baseRight ? baseRight.split(delimiter) : []),
-  ];
+  let stringToEvaluate = baseLeft + (baseRight ? "," : "") + baseRight;
+  let delimiterArray = [];
+  if (delimiter.length === 1) {
+    delimiterArray = [delimiter];
+  } else if (delimiter.length > 1) {
+    delimiterArray = delimiter.split(",");
+  }
+
+  delimiterArray.forEach((delim) => {
+    stringToEvaluate = stringToEvaluate.replaceAll(delim, ",");
+  });
+
+  const numbersArray = [...stringToEvaluate.split(",")];
 
   return numbersArray.map((num) => Number(num));
 }

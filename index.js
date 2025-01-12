@@ -15,7 +15,12 @@ function add(str) {
   if (!str) return 0;
 
   const baseDelimiter = "\n";
-  const delimiter = ",";
+  let delimiter = ",";
+
+  if (str[0] === "/" && str[1] === "/") {
+    delimiter = str[2];
+    str = str.split(baseDelimiter)[1];
+  }
 
   const numbersArray = calculator.buildNumbersArray(
     str,

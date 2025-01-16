@@ -47,15 +47,11 @@ function add(str) {
     delimiter
   );
 
-  const negativeNumbers = numbersArray.filter((num) => Math.sign(num) === -1);
+  validateNumsArrayAndThrow(numbersArray);
 
-  if (negativeNumbers.length) {
-    throw new Error(
-      `negative numbers not allowed ${negativeNumbers.join(",")}`
-    );
-  }
-
-  return numbersArray.reduce((acc, cv) => (cv > 1000 ? acc : acc + cv), 0);
+  return numbersArray
+    .filter((num) => num < 1000)
+    .reduce((acc, cv) => acc + cv, 0);
 }
 
 const calculator = {
@@ -65,3 +61,12 @@ const calculator = {
 };
 
 module.exports = calculator;
+function validateNumsArrayAndThrow(numbersArray) {
+  const negativeNumbers = numbersArray.filter((num) => Math.sign(num) === -1);
+
+  if (negativeNumbers.length) {
+    throw new Error(
+      `negative numbers not allowed ${negativeNumbers.join(",")}`
+    );
+  }
+}

@@ -30,6 +30,16 @@ function parseDelimiter(str, baseDelimiter, defaultDelimiter) {
   return { delimiter: defaultDelimiter, evaluateStr: str };
 }
 
+function validateNumsArrayAndThrow(numbersArray) {
+  const negativeNumbers = numbersArray.filter((num) => Math.sign(num) === -1);
+
+  if (negativeNumbers.length) {
+    throw new Error(
+      `negative numbers not allowed ${negativeNumbers.join(",")}`
+    );
+  }
+}
+
 function add(str) {
   if (!str) return 0;
 
@@ -61,12 +71,3 @@ const calculator = {
 };
 
 module.exports = calculator;
-function validateNumsArrayAndThrow(numbersArray) {
-  const negativeNumbers = numbersArray.filter((num) => Math.sign(num) === -1);
-
-  if (negativeNumbers.length) {
-    throw new Error(
-      `negative numbers not allowed ${negativeNumbers.join(",")}`
-    );
-  }
-}

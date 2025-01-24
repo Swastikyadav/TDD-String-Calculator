@@ -102,7 +102,7 @@ describe("string calculator", () => {
   });
 
   describe("combine custom and default delimiter", () => {
-    test.only("delimiter combination should return sum of numbers", () => {
+    test("delimiter combination should return sum of numbers", () => {
       expect(add("//;\n1;2,3")).toEqual(6);
       expect(add("//;\n1;2\n3")).toEqual(6);
     });

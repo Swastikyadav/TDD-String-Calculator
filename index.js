@@ -15,7 +15,10 @@ function buildNumbersArray(str, baseDelimiter, delimiter) {
 function parseDelimiter(str, baseDelimiter, defaultDelimiter) {
   if (str.startsWith("//")) {
     const delimiter = str.split("\n")[0].slice(2).replace("][", ",");
-    const evaluateStr = str.split(baseDelimiter)[1];
+    const evaluateStr = str
+      .split(baseDelimiter)
+      .filter((_, idx) => idx !== 0)
+      .join(",");
 
     if (delimiter.startsWith("[") && delimiter.endsWith("]")) {
       return {

@@ -45,8 +45,8 @@ describe("string calculator", () => {
 
   describe("buildNumbersArray", () => {
     test("should return an array of numbers from string separated by baseDelimiter and delimiter", () => {
-      expect(buildNumbersArray("1\n2,3", "\n", ",")).toEqual([1, 2, 3]);
-      expect(buildNumbersArray("1,2,3", "\n", ",")).toEqual([1, 2, 3]);
+      expect(buildNumbersArray("1\n2,3", [","])).toEqual([1, 2, 3]);
+      expect(buildNumbersArray("1,2,3", [","])).toEqual([1, 2, 3]);
     });
   });
 
@@ -90,12 +90,12 @@ describe("string calculator", () => {
 
   describe("parseDelimiter", () => {
     test("should return parsed delimiter and string to evaluate", () => {
-      expect(parseDelimiter("1,2,3", "\n", ",")).toEqual({
-        delimiter: ",",
+      expect(parseDelimiter("1,2,3")).toEqual({
+        delimiter: [","],
         evaluateStr: "1,2,3",
       });
-      expect(parseDelimiter("//[***][%%]\n1***2%%3", "\n", ",")).toEqual({
-        delimiter: "***,%%",
+      expect(parseDelimiter("//[***][%%]\n1***2%%3")).toEqual({
+        delimiter: ["***", "%%"],
         evaluateStr: "1***2%%3",
       });
     });
@@ -105,6 +105,13 @@ describe("string calculator", () => {
     test("delimiter combination should return sum of numbers", () => {
       expect(add("//;\n1;2,3")).toEqual(6);
       expect(add("//;\n1;2\n3")).toEqual(6);
+    });
+  });
+
+  describe("odd or even parameter", () => {
+    test("should handle odd or even index value addition", () => {
+      expect(add("//;\n1;2,3", "odd")).toEqual(2);
+      expect(add("//;\n1;2,3", "even")).toEqual(4);
     });
   });
 });

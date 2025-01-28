@@ -65,13 +65,14 @@ function add(str, type) {
   validateNumsArrayAndThrow(numbersArray);
   numbersArray = oddEvenParser(numbersArray, type);
 
-  return calculate(numbersArray);
+  return calculator.calculate(numbersArray);
 }
 
 const calculator = {
   add,
   buildNumbersArray,
   parseDelimiter,
+  calculate,
 };
 
 module.exports = calculator;

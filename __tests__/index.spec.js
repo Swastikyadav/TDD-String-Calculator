@@ -1,8 +1,9 @@
 const calculator = require("../index");
-const { add, buildNumbersArray, parseDelimiter } = calculator;
+const { add, buildNumbersArray, parseDelimiter, calculate } = calculator;
 
 const buildNumbersArraySpy = jest.spyOn(calculator, "buildNumbersArray");
 const parseDelimiterSpy = jest.spyOn(calculator, "parseDelimiter");
+const calculateSpy = jest.spyOn(calculator, "calculate");
 
 describe("string calculator", () => {
   afterEach(() => {
@@ -15,6 +16,7 @@ describe("string calculator", () => {
 
     expect(buildNumbersArraySpy).toHaveBeenCalled();
     expect(parseDelimiterSpy).toHaveBeenCalled();
+    expect(calculateSpy).toHaveBeenCalled();
   });
 
   describe("two numbers separated by commas", () => {
